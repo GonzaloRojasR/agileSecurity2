@@ -8,7 +8,8 @@ pipeline {
         SONAR_PROJECT_NAME = 'agileSecurity'
         SONAR_TOKEN = credentials('sonar-token')
     }
-    stage('Download Code and checkout') {
+    stages {
+        stage('Download Code and checkout') {
                 steps {
                     script {
                         checkout(
@@ -17,7 +18,7 @@ pipeline {
                                 userRemoteConfigs: [[url: 'https://github.com/GonzaloRojasR/agileSecurity.git']]])
                     }
                 }
-            }
+        }
 
         stage('Build') {
             steps {
