@@ -15,7 +15,7 @@ pipeline {
                         checkout(
                                 [$class: 'GitSCM',
                                 branches: [[name: 'main' ]],
-                                userRemoteConfigs: [[url: 'https://github.com/GonzaloRojasR/agileSecurity.git']]])
+                                userRemoteConfigs: [[url: 'https://github.com/GonzaloRojasR/agileSecurity2.git']]])
                     }
                 }
         }
