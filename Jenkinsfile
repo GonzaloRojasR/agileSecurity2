@@ -105,6 +105,7 @@ pipeline {
                             sh '''
                                 curl -X POST "http://localhost:9090/JSON/spider/action/scan/" \
                                 --data "url=http://localhost:8081/rest/mscovid/estadoPais" \
+                                --data "recurse=true" \
                                 --data "maxChildren=10"
                                 sleep 30
                             '''
