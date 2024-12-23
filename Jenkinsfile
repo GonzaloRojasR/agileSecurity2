@@ -113,6 +113,32 @@ pipeline {
                     }
                 }
 
+                // prueba
+                stage('Escaneo Activo') {
+                    steps {
+                        script {
+                            sh '''
+                                curl -X POST "http://localhost:9090/JSON/ascan/action/scan/" \
+                                --data "url=http://localhost:8081/rest/mscovid/estadoPais" \
+                                --data "recurse=false"
+                                sleep 10
+                            '''
+                            echo "Escaneo activo iniciado. Monitoreando progreso..."
+                            while (true) {
+                                def scanStatus = sh(script: "curl -s http://localhost:9090/JSON/ascan/view/status/ | jq -r '.status'", returnStdout: true).trim()
+                                if (scanStatus == "100") {
+                                    echo "Escaneo activo completado exitosamente."
+                                    break
+                                } else {
+                                    echo "Escaneo activo en progreso... Estado: ${scanStatus}%"
+                                    sleep(10)
+                                }
+                            }
+                        }
+                    }
+                }
+
+                
                 stage('Publicar Reporte OWASP ZAP') {
                     steps {
                         script {                            
