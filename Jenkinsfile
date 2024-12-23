@@ -9,6 +9,7 @@ pipeline {
         SONAR_TOKEN = credentials('sonar-token')
     }
     stages {
+        // prueba
         stage('Descargar Código y Checkout') {
             steps {
                 script {
