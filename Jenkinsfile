@@ -42,7 +42,7 @@ pipeline {
             }
         }
 
-        stage('Análisis SonarQube') {
+        stage('DEV: Análisis SonarQube') {
             steps {
                 script {
                     catchError(buildResult: 'UNSTABLE', stageResult: 'UNSTABLE') {
@@ -60,7 +60,7 @@ pipeline {
             }
         }
 
-        stage('OWASP Dependency-Check') {
+        stage('DEV: OWASP Dependency-Check') {
             steps {
                 script {
                     catchError(buildResult: 'UNSTABLE', stageResult: 'UNSTABLE') {
@@ -74,7 +74,16 @@ pipeline {
             }
         }
 
-        stage('OWASP ZAP') {
+        
+        stage('TEST: Test newman maven') {
+                steps {
+                    script {
+                        sh 'newman run ./postman_collection.json'
+                    }
+                }
+        }
+        
+        stage('TEST: OWASP ZAP') {
             stages {
                 stage('Iniciar OWASP ZAP') {
                     steps {
