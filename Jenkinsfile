@@ -8,6 +8,7 @@ pipeline {
         SONAR_PROJECT_NAME = 'agileSecurity'
         SONAR_TOKEN = credentials('sonar-token')
     }
+    // comentario para demo de pipeline
     stages {
         stage('Download Code and checkout') {
                 steps {
