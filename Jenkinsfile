@@ -19,7 +19,6 @@ pipeline {
                     }
                 }
         }
-        // cambio para mostrar pipeline a
         stage('Build') {
             steps {
                 script {
